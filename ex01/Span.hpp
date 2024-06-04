@@ -1,24 +1,26 @@
 #ifndef SPAN_HPP
 #define SPAN_HPP
+#include <vector>
+#include <iostream>
 
-//template <typename T>
 class Span
 {
 	private:
 		unsigned int capacity;
-		unsigned int size;
+		std::vector<int> myVector;
 
 	public:
 		Span(unsigned int N);
 		~Span();
-		Span &Span(const Span &other);
+		Span(const Span &other);
 		Span &operator=(const Span &other);
 
-		void addNumber();
+		void addNumber(int number);
 		int shortestSpan();
 		int longestSpan();
-		void addThousand();
+		void addManyNumbers();
 
+		void printVector();
 };
 
 #endif

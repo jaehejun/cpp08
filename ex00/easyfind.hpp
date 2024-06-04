@@ -2,6 +2,8 @@
 #define EASYFIND_HPP
 
 #include <iostream>
+#include <stack>
+#include <queue>
 
 // std::find behavior
 
@@ -17,13 +19,51 @@
 //	return last;
 //}
 
+//template <typename T>
+//void easyfind(T &container, int second)
+//{
+//	typename T::iterator it = std::find(container.begin(), container.end(), second);
+//	if (it  == container.end())
+//		throw std::exception();
+//	return it;
+//}
+
 template <typename T>
-typename T::iterator easyfind(T &container, int second)
+void easyfind(T container, int second)
 {
 	typename T::iterator it = std::find(container.begin(), container.end(), second);
 	if (it  == container.end())
 		throw std::exception();
-	return it;
+	std::cout << second << " is found in Sequence Container!" << std::endl;
+	return ;
+}
+
+void easyfind(std::stack<int> container, int second)
+{
+	while (!container.empty())
+	{
+		if (container.top() == second)
+		{
+			std::cout << second << " is found in Stack!" << std::endl;
+			return ;
+		}
+		container.pop();
+	}
+	throw std::exception();
+}
+
+void easyfind(std::queue<int> container, int second)
+{
+	while (!container.empty())
+	{
+		if (container.front() == second)
+		{
+			std::cout << second << " is found in Queue!" << std::endl;
+			return ;
+		}
+		container.pop();
+	}
+	throw std::exception();
 }
 
 
