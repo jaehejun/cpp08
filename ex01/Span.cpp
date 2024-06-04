@@ -6,6 +6,16 @@ Span::~Span() {}
 
 Span::Span(const Span &other) : capacity(other.capacity), myVector(other.myVector) {}
 
+Span &Span::operator=(const Span &other)
+{
+	if (this != &other)
+	{
+		capacity = other.capacity;
+		myVector = other.myVector;
+	}
+	return *this;
+}
+
 void Span::addNumber(int number)
 {
 	if (myVector.size() == capacity)
@@ -13,30 +23,47 @@ void Span::addNumber(int number)
 	myVector.push_back(number);
 }
 
-int Span::shortestSpan()
+long Span::shortestSpan()
 {
 	if (myVector.size() <= 1)
 		throw std::exception();
-	return 1;
-}
-
-int Span::longestSpan()
-{
-	if (myVector.size() <= 1)
-		throw std::exception();
-	return 2;
-}
-
-void Span::addManyNumbers()
-{
-	;
-}
-
-void Span::printVector()
-{
-	std::cout << "print V!" << std::endl;
-	for (std::vector<int>::iterator it = myVector.begin(); it != myVector.end(); ++it)
+	std::sort(myVector.begin(), myVector.end());
+	long shortestSpan = std::abs(static_cast<long>(INT_MIN) - static_cast<long>(INT_MAX));
+	for (size_t i = 1; i < myVector.size(); ++i)
 	{
-		std::cout << *it << std::endl;
+		long span = static_cast<long>(myVector[i]) - static_cast<long>(myVector[i - 1]);
+		if (span < shortestSpan)
+			shortestSpan = span;
 	}
+	return shortestSpan;
+}
+
+long Span::longestSpan()
+{
+	if (myVector.size() <= 1)
+		throw std::exception();
+	std::vector<int>::iterator minIt = std::min_element(myVector.begin(), myVector.end());
+	std::vector<int>::iterator maxIt = std::max_element(myVector.begin(), myVector.end());
+	return static_cast<long>(*maxIt) - static_cast<long>(*minIt);
+}
+
+void Span::addManyNumbers(long number)
+{
+	for (long i = 0; i < number; ++i)
+	{
+		addNumber(rand());
+	}
+}
+
+void Span::printElements() const
+{
+	for (size_t i = 0; i < myVector.size(); i++)
+	{
+		std::cout << "myVector[" << i << "] : " << myVector[i] << std::endl;
+	}
+}
+
+void Span::getSize() const
+{
+	std::cout << "Vector size: " << myVector.size() << std::endl;
 }
