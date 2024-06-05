@@ -4,17 +4,18 @@
 #include <stack>
 
 template <typename T>
-class MutantStack
+class MutantStack : public std::stack<T>
 {
 	private:
-		//std::stack mutantStack;
-		//iterator iterator
 	
 	public:
-		MutantStack();
-		push()
-		pop()
-		iterator it
+		typedef typename std::deque<T>::iterator iterator;
+		typedef typename std::deque<T>::const_iterator const_iterator;
+
+		iterator begin() {return this->c.begin();}
+		iterator end() {return this->c.end();}
+		const_iterator begin() const {return this->c.begin();}
+		const_iterator end() const {return this->c.end();}
 };
 
 #endif
