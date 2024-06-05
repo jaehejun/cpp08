@@ -47,12 +47,11 @@ long Span::longestSpan()
 	return static_cast<long>(*maxIt) - static_cast<long>(*minIt);
 }
 
-void Span::addManyNumbers(long number)
+void Span::addManyNumbers(std::vector<int> &other, unsigned int count)
 {
-	for (long i = 0; i < number; ++i)
-	{
-		addNumber(rand());
-	}
+	if (capacity - myVector.size() < count)
+		throw std::exception();
+	myVector.insert(myVector.begin(), other.begin(), other.begin() + count);
 }
 
 void Span::printElements() const
@@ -61,9 +60,4 @@ void Span::printElements() const
 	{
 		std::cout << "myVector[" << i << "] : " << myVector[i] << std::endl;
 	}
-}
-
-void Span::getSize() const
-{
-	std::cout << "Vector size: " << myVector.size() << std::endl;
 }

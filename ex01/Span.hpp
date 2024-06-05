@@ -20,10 +20,9 @@ class Span
 		void addNumber(int number);
 		long shortestSpan();
 		long longestSpan();
-		void addManyNumbers(long number);
+		void addManyNumbers(std::vector<int> &other, unsigned int count);
 
 		void printElements() const;
-		void getSize() const;
 };
 
 #endif

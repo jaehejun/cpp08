@@ -35,7 +35,6 @@ void easyfind(T container, int second)
 	if (it  == container.end())
 		throw std::exception();
 	std::cout << second << " is found in Sequence Container!" << std::endl;
-	return ;
 }
 
 void easyfind(std::stack<int> container, int second)
